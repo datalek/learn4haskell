@@ -75,8 +75,6 @@ When working with lists, the most practical module will be "Data.List":
    * http://hackage.haskell.org/package/base-4.14.0.0/docs/Data-List.html
 -}
 
-import Data.List
-
 {- |
 =🛡= Lists
 
@@ -368,7 +366,7 @@ Implement a function that returns only the first half of a given list.
 firstHalf :: [a] -> [a]
 firstHalf l =
   let half = (length l) `div` 2
-  in subList 0 (half - 1) l
+  in take (half) l
 
 {- |
 =🛡= Pattern matching
@@ -626,7 +624,7 @@ Implement a function that duplicates each element of the list
 -}
 duplicate :: [a] -> [a]
 duplicate [] = []
-duplicate (x : xs) = [x, x] ++ duplicate xs
+duplicate (x : xs) = x : x : duplicate xs
 
 
 {- |
@@ -766,7 +764,7 @@ the list with only those lists that contain a passed element.
 🕯 HINT: Use the 'elem' function to check whether an element belongs to a list
 -}
 contains :: Int -> [[Int]] -> [[Int]]
-contains x = filter (\x' -> elem x x')
+contains x = filter (elem x)
 
 
 {- |
@@ -891,7 +889,7 @@ and reverses it.
   cheating!
 -}
 rewind :: [a] -> [a]
-rewind xs = go [] xs
+rewind = go []
   where go :: [a] -> [a] -> [a]
         go rs [] = rs
         go rs (x : xs) = go (x : rs) xs
