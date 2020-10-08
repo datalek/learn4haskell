@@ -564,7 +564,7 @@ buildHouse house (City c b houses) =
 buildWalls :: City -> City
 buildWalls city = case cityCastle city of
   CastleWithoutWalls castleName ->
-    if ((countLivingPeople city) >= 10)
+    if countLivingPeople city >= 10
     then city { cityCastle =  CastleWithWalls castleName }
     else city
   _ -> city
