@@ -558,8 +558,7 @@ buildCastle castleName city = case cityCastle city of
   _ -> city { cityCastle = CastleWithoutWalls castleName }
 
 buildHouse :: House -> City -> City
-buildHouse house (City c b houses) =
-  City c b (house : houses)
+buildHouse house city = city { houses = house : houses city }
 
 buildWalls :: City -> City
 buildWalls city = case cityCastle city of
